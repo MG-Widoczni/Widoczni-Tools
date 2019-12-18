@@ -1,0 +1,35 @@
+{
+  "name": "Widoczni Tools",
+  "version": "1.0",
+  "description": "Zestaw skryptów ułatwiających codzienną pracę",
+  "permissions": ["activeTab", "declarativeContent", "storage"],
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+   "content_scripts": [
+	    {
+	      "matches": [
+	        "<all_urls>"
+		],
+		  "css": ["styles.css"],
+	      "js": ["jquery-3.4.1.min.js", "content.js"]
+	    }
+	],
+  "page_action": {
+	  	"default_popup": "popup.html",
+        "default_icon": {
+        "16": "images/widoczni-logo.png",
+        "32": "images/widoczni-logo.png",
+        "48": "images/widoczni-logo.png",
+        "128": "images/widoczni-logo.png"
+      }
+  },
+  "icons": {
+    "16": "images/widoczni-logo.png",
+    "32": "images/widoczni-logo.png",
+    "48": "images/widoczni-logo.png",
+    "128": "images/widoczni-logo.png"
+  },
+  "manifest_version": 2
+}

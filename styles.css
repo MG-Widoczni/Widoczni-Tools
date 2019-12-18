@@ -1,0 +1,90 @@
+    #myContainer {
+    position: absolute;
+    top: 30%;
+    right: 0;
+    font-size: 20px;
+    background: lightgrey;
+    border: 3px outset black;
+    margin: 30px;
+    opacity: 0.9;
+    z-index: 1100;
+    padding: 5px 20px;
+    }
+    #myButton {
+    cursor: pointer;
+    font-size: 18px;
+    }
+    #myContainer p {
+    color: red;
+    background: white;
+    }
+    #copy {
+    margin-left: 10px;
+    background-color: #0b8043;
+    color: #fff;
+    border-radius: 19px;
+    border: 1px solid #0b8043;
+    padding: 5px 10px;
+    cursor: pointer;
+    }
+    #copy-all {
+    margin-left: 10px;
+    background-color: #0b8043;
+    color: #fff;
+    border-radius: 19px;
+    border: 1px solid #0b8043;
+    padding: 5px 10px;
+    cursor: pointer;
+    }
+    #copy-selected {
+    margin-left: 10px;
+    background-color: #0b8043;
+    color: #fff;
+    border-radius: 19px;
+    border: 1px solid #0b8043;
+    padding: 5px 10px;
+    cursor: pointer;
+    }
+    tools-cell.tools-cell mat-checkbox {
+    display: none;
+    }
+    .particle-table-row > .tools-cell {
+    display: none !important;
+    }
+    input#keywordCheck {
+    position: relative;
+    height: 15px;
+    width: 25px;
+    }
+    span#google-icon {
+    margin-left: 10px;
+    position: fixed;
+    margin-top: 3px;
+    }
+	#oko_tools {position:fixed !important; right:-90px !important; width: 150px !important; top:50px !important; z-index:99999999 !important; line-height:15px !important;}
+    #oko_tools:hover{right:-5px !important;}
+	#okoBox {width: 100px !important; float:right !important;}
+    #okoBox input{font-family:tahoma !important; font-size:11px !important; border-color: #0000E0 !important; background-color:#0060F0 !important; color:#fff !important; margin:0px !important; padding:0px !important; width:50px !important; height:25px !important; line-height:15px !important; text-transform:none !important; float:left !important;}
+    #okoBox input:hover{cursor:pointer !important; background-color:#000EEE !important}
+    #okoBox p{font-size:9px !important; margin:0 !important; text-align:center !important;}
+ 	.iks {margin-left:25px !important; cursor:pointer !important;}
+	#toolsBox {position:fixed !important; top:5px !important; right:10px !important; z-index:99999 !important; width:50px !important; margin:0 !important;}
+    #toolsBox p{font-size:12px !important; text-align:center !important; line-height:13px !important; background:rgba(255,255,255,0.9) !important; border-radius:2px !important; font-weight:500 !important;}
+    #toolsBox p span{font-size:14px !important; color:#000 !important; font-weight:700 !important;}
+    #tools {position:fixed !important; right:-90px !important; width: 150px !important; top:250px !important; z-index:99999999 !important;}
+    #tools:hover{right:-5px !important;}
+	#toolsBox {position:fixed !important; top:5px !important; right:10px !important; z-index:99999 !important; width:50px !important; margin:0 !important;}
+    #toolsBox p{font-size:10px !important; text-align:center !important; line-height:13px !important; background:rgba(255,255,255,0.8) !important; border-radius:2px !important; font-weight:500 !important;}
+    #toolsBox p span{font-size:12px !important; color:red !important;}
+    .yks {margin-left:25px !important; cursor:pointer !important;}
+	#seoBox {width: 100px !important; float:right !important; line-height:15px !important;}
+    #seoBox input{font-family:tahoma !important; font-size:11px !important; border-color: #0000E0 !important; background-color:#0060F0 !important; color:#fff !important; margin:0px !important; padding:0px !important; width:50px !important; height:25px !important; line-height:15px !important; text-transform:none !important; float:left !important;}
+    #seoBox input:hover{cursor:pointer !important; background-color:#000EEE !important}
+    #seoBox p{font-size:9px !important; margin:0 !important; text-align:center !important}
+	#seoTop {position:fixed; top:0px !important; left:0px !important; right:0px !important; background-color:#d9ffb6 !important; z-index:9999 !important;}
+    #seoTopContent {font-size:12px !important; text-align:left !important}
+    #seoTopContent span{padding-left:10px !important;}
+    #seoTopContent span.desc{height:40px !important; display:block !important; overflow:hidden !important}
+    #seoTopContent hr{margin:0px !important; border: solid 0.5px !important;}
+    #seoTopContent .red{color:#f00 !important;}
+	

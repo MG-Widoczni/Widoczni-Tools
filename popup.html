@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+  <body>
+    <div class="widoczni-tools">
+		<p>Widoczni Tools</p>
+		<div><label class="switch"><input type="checkbox" id="enhanced-search-results" checked><span class="slider round"></span></label><span class="tool-name">Enhanced Search Results</span></div>
+		<div><label class="switch"><input type="checkbox" id="gakpt-copy-script" checked><span class="slider round"></span></label><span class="tool-name">GAKPT Copy Script</span></div>
+		<div><label class="switch"><input type="checkbox" id="oko-tools-box" checked><span class="slider round"></span></label><span class="tool-name">OKO Tools Box</span></div>
+		<div><label class="switch"><input type="checkbox" id="seo-tools-box" checked><span class="slider round"></span></label><span class="tool-name">SEO Tools Box</span></div>
+		<div><label class="switch"><input type="checkbox" id="seo-count-script" checked><span class="slider round"></span></label><span class="tool-name">SERP Count Script</span></div>
+	</div>
+    <script src="popup.js"></script>
+	
+	<style>
+		.widoczni-tools {
+			width: 250px;
+		}
+		.switch {
+		  position: relative;
+		  display: inline-block;
+		  width: 48px;
+		  height: 22px;
+		  margin: 4px;
+		}
+		.switch input {
+		  opacity: 0;
+		  width: 0;
+		  height: 0;
+		}
+		.slider {
+		  position: absolute;
+		  cursor: pointer;
+		  top: 0;
+		  left: 0;
+		  right: 0;
+		  bottom: 0;
+		  background-color: #ccc;
+		  -webkit-transition: .4s;
+		  transition: .4s;
+		}
+		.slider:before {
+		  position: absolute;
+		  content: "";
+		  height: 13px;
+		  width: 13px;
+		  left: 4px;
+		  bottom: 4px;
+		  background-color: white;
+		  -webkit-transition: .4s;
+		  transition: .4s;
+		}
+		input:checked + .slider {
+		  background-color: #2196F3;
+		}
+
+		input:focus + .slider {
+		  box-shadow: 0 0 1px #2196F3;
+		}
+
+		input:checked + .slider:before {
+		  -webkit-transform: translateX(26px);
+		  -ms-transform: translateX(26px);
+		  transform: translateX(26px);
+		}
+		.slider.round {
+		  border-radius: 34px;
+		}
+		.slider.round:before {
+		  border-radius: 50%;
+		}
+		.widoczni-tools div {
+		    box-shadow: 1px 1px 10px 1px lightgrey;
+		    margin-bottom: 10px;
+		    padding: 3px;
+		}
+		span.tool-name {
+		    display: inline-block;
+		    position: fixed;
+		    margin-top: 7px;
+		    margin-left: 6px;
+		}
+	</style>
+  </body>
+</html>
