@@ -7,7 +7,7 @@ function getResults() {
 		var links = results.childNodes[0];
 		var hrefs = links.getAttribute("href");
 		var hrefs = hrefs.replace(/^(?:https?:\/\/)?(?:www\.)?/i, "").split('/')[0];
-	
+
 	     	$.ajax({
 	            type: "POST",
 	            url: "https://mgabryel.com/enhanced-results.php",
@@ -282,7 +282,7 @@ function toolsBox(){
 function seoBox(){
 
     var items = [
-        ['Site100 F0','Site','https://www.google.pl/search?filter=0&num=100&q=site:'+window.location.hostname.replace("www.","")],
+        ['GSC Wybrany URL','GSC URL','http://oko.widoczni.pl/plug.php?zapytanie=gsc_url&domena='+document.location],
         ['GSC','GSC','http://oko.widoczni.pl/plug.php?zapytanie=gsc&domena='+window.location.hostname],
         ['Ahrefs','Ahrefs','https://ahrefs.com/site-explorer/overview/v2/subdomains/recent?target='+window.location.hostname],
         ['Senuto','Senuto','https://app.senuto.com/visibility-analysis?domain='+window.location.hostname.replace("www.","")+'&fetch_mode=subdomain'],
@@ -296,6 +296,7 @@ function seoBox(){
         ['WebArchive','Arch','https://web.archive.org/web/*/'+window.location.hostname],
 		['Siteliner','SiteLine','http://www.siteliner.com/'+window.location.hostname+'?siteliner=site-dashboard&siteliner-sort=scan_time&siteliner-from=1&siteliner-message='],
 		['SemStorm','Sem S','https://app.semstorm.com/explorer/dashboard?competitor_0='+window.location.hostname.replace("www.","")+'&op=and&cc=pl'],
+        ['Site100 F0','Site','https://www.google.pl/search?filter=0&num=100&q=site:'+window.location.hostname.replace("www.","")],
 		['Raport skutecznosci CM','Rap CM', 'http://oko.widoczni.pl/plug.php?zapytanie=raportcm&domena='+window.location.hostname]
     ];
 
@@ -370,13 +371,13 @@ function seoTopGenerator(enabl){
     }
 }
 
-function mouseTrap(){
-    var topEnable = false;
-    Mousetrap.bind('alt+q', function(e) {
-        topEnable = !topEnable;
-        seoTopGenerator(topEnable);
-    });
-}
+// function mouseTrap(){
+    // var topEnable = false;
+    // Mousetrap.bind('alt+q', function(e) {
+        // topEnable = !topEnable;
+        // seoTopGenerator(topEnable);
+    // });
+// }
 
 function seoTools() {
     createAddonSeo();
