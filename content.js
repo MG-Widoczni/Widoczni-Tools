@@ -3,22 +3,27 @@
 
 function getResults() {
 
-	document.querySelectorAll('div.r').forEach(function (results) {
-		var links = results.childNodes[0];
-		var hrefs = links.getAttribute("href");
-		var hrefs = hrefs.replace(/^(?:https?:\/\/)?(?:www\.)?/i, "").split('/')[0];
+const domains = new Array();
+const urls = new Array();
 
+	document.querySelectorAll('div.r').forEach(function (results) {
+		var link = results.childNodes[0];
+		var href = link.getAttribute("href");
+		var url = href.replace(/^(?:https?:\/\/)?(?:www\.)?/i, "");
+		var domain = href.replace(/^(?:https?:\/\/)?(?:www\.)?/i, "").split('/')[0];
+		domains.push(domain);
+		urls.push(url);
+	});	
 	     	$.ajax({
 	            type: "POST",
 	            url: "https://mgabryel.com/enhanced-results.php",
-	            data: {'domena':hrefs},
+	            data: {'domena':domains, 'url':urls},
 	            success: function(data){
-	                 console.log(data);
 					 document.querySelectorAll('div.r').forEach(function (enhance) {
 						 var links = enhance.childNodes[0];
 				 		 var hrefs = links.getAttribute("href");
 				 		 var hrefs = hrefs.replace(/^(?:https?:\/\/)?(?:www\.)?/i, "").split('/')[0];
-						 if (data == hrefs) {
+						 if (data.includes(hrefs)) {
 							var enhanceParent = enhance.parentNode;
 						 	enhanceParent.setAttribute("style", "box-shadow: 1px 1px 10px 1px green; padding: 10px;");
 						 } else {
@@ -27,14 +32,11 @@ function getResults() {
 				  	  });
 	            }
 	            });
-					
-	  });	
 }
 
 // Skrypt 2. Rozszerzenie GAKPT'a o funkcję kopiowania i sprawdzenia frazy w Google.
 
 function onScroll() {
-	console.log('scrolled');
     document.querySelectorAll('div.particle-table-row').forEach(function (copyElement) {
          if (copyElement.className != 'particle-table-row group-header') {
             var button = document.createElement('button');
@@ -282,14 +284,14 @@ function toolsBox(){
 function seoBox(){
 
     var items = [
-        ['GSC Wybrany URL','GSC URL','http://oko.widoczni.pl/plug.php?zapytanie=gsc_url&domena='+document.location],
-        ['GSC','GSC','http://oko.widoczni.pl/plug.php?zapytanie=gsc&domena='+window.location.hostname],
+		['GSC Wybrany URL','GSC URL','http://oko.widoczni.pl/plug.php?zapytanie=gsc_url&domena='+document.location],
+ 	    ['GSC','GSC','http://oko.widoczni.pl/plug.php?zapytanie=gsc&domena='+window.location.hostname],
         ['Ahrefs','Ahrefs','https://ahrefs.com/site-explorer/overview/v2/subdomains/recent?target='+window.location.hostname],
         ['Senuto','Senuto','https://app.senuto.com/visibility-analysis?domain='+window.location.hostname.replace("www.","")+'&fetch_mode=subdomain'],
-        ['Cache','C','http://webcache.googleusercontent.com/search?q=cache%3A'+document.location],
+ 	    ['Cache','C','http://webcache.googleusercontent.com/search?q=cache%3A'+document.location],
         ['TXT Cache','CT','http://webcache.googleusercontent.com/search?strip=1&q=cache%3A'+document.location],
         ['PageSpeed','PS','https://developers.google.com/speed/pagespeed/insights/?hl=pl&url='+document.location],
-        ['Schema Test','MD','https://search.google.com/structured-data/testing-tool/u/0/?hl=pl#url='+window.location],
+	    ['Schema Test','MD','https://search.google.com/structured-data/testing-tool/u/0/?hl=pl#url='+window.location],
         ['Robots.TXT','Robots',window.location.protocol+'//'+window.location.hostname+'/robots.txt'],
         ['Mobile Test','Mobile','https://search.google.com/test/mobile-friendly?hl=pl&url='+document.location],
         ['WhoIs','WhoIs','http://whois.domaintools.com/'+window.location.hostname],
@@ -298,7 +300,7 @@ function seoBox(){
 		['SemStorm','Sem S','https://app.semstorm.com/explorer/dashboard?competitor_0='+window.location.hostname.replace("www.","")+'&op=and&cc=pl'],
         ['Site100 F0','Site','https://www.google.pl/search?filter=0&num=100&q=site:'+window.location.hostname.replace("www.","")],
 		['Raport skutecznosci CM','Rap CM', 'http://oko.widoczni.pl/plug.php?zapytanie=raportcm&domena='+window.location.hostname]
-    ];
+		    ];
 
     var dWelcome = document.createElement('p');
     dWelcome.innerHTML = 'SEO Tools <span class="yks">X</span>';
@@ -371,13 +373,13 @@ function seoTopGenerator(enabl){
     }
 }
 
-// function mouseTrap(){
-    // var topEnable = false;
-    // Mousetrap.bind('alt+q', function(e) {
-        // topEnable = !topEnable;
-        // seoTopGenerator(topEnable);
-    // });
-// }
+function mouseTrap(){
+    var topEnable = false;
+    Mousetrap.bind('alt+q', function(e) {
+        topEnable = !topEnable;
+        seoTopGenerator(topEnable);
+    });
+}
 
 function seoTools() {
     createAddonSeo();
