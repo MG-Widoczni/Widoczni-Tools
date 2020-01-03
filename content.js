@@ -1,5 +1,16 @@
+/* Spis treści:
 
-// Skrypt 1. Podświetlenie domen klientów w wynikach wyszukiwania.
+Skrypt 1. Enhanced Seach Results - podświetlenie domen klientów w wynikach wyszukiwania.
+Skrypt 2. Rozszerzenie GAKPT'a o funkcję kopiowania i sprawdzenia frazy w Google.
+Skrypt 3. OKO Tools
+Skrypt 4. SEO Tools
+Skrypt 5. SERP Count
+Funkcja startowa
+
+*/
+
+
+// Skrypt 1. Enhanced Seach Results - podświetlenie domen klientów w wynikach wyszukiwania.
 
 function getResults() {
 
@@ -36,7 +47,8 @@ const urls = new Array();
 
 // Skrypt 2. Rozszerzenie GAKPT'a o funkcję kopiowania i sprawdzenia frazy w Google.
 
-function onScroll() {
+function addElements() {
+	console.log('scrolled!');
     document.querySelectorAll('div.particle-table-row').forEach(function (copyElement) {
          if (copyElement.className != 'particle-table-row group-header') {
             var button = document.createElement('button');
@@ -81,18 +93,17 @@ function onScroll() {
 }
 
 function start() {
-	window.addEventListener('scroll', onScroll());
+	setInterval(function(){ addElements() }, 3000);
     setTimeout(function() { document.querySelector('div.ideas-card').click(); }, 1000);
     setTimeout(function() { document.querySelector('.input-container').addEventListener("keypress", function (e) {
         if (e.key === 'Enter' && (!document.body.contains(document.getElementById('copy-all') || document.getElementById('copy-selected')) )) {
             createButtons();
-            onScroll()
         }
     }); }, 3000);
-    setTimeout(function() { document.querySelector('.get-results-button').onclick = createButtons; onScroll; }, 4000);
+    setTimeout(function() { document.querySelector('.get-results-button').onclick = addElements() }, 4000);
     	document.addEventListener("keypress", function (y) {
         if (y.keyCode == 32) {
-            onScroll();
+			addElements();
             if (!document.body.contains(document.getElementById('copy-all') || document.getElementById('copy-selected')) ) {
                 createButtons();
             }
@@ -214,9 +225,9 @@ function charsCounter(){
             chars.innerHTML = '<p>Chars:<br><span>'+length+'</span></p>';
         }
     } else {
-        chars.innerHTML = '';
-        document.getElementById('toolsBox').removeChild(chars);
-    }
+          	chars.innerHTML = '';
+       	    document.getElementById('toolsBox').removeChild(chars);
+	  }
 });
 }
 
@@ -254,12 +265,6 @@ function okoBox(){
         arr[i].setAttribute('title',items[i][0]);
         document.getElementById('okoBox').appendChild(arr[i]);
     }
-}
-
-function okoTools() {
-    createAddonOko();
-    toolsBox();
-    okoBox();
 }
 
 
@@ -381,11 +386,6 @@ function mouseTrap(){
     });
 }
 
-function seoTools() {
-    createAddonSeo();
-    seoBox();
-}
-
 
 // Skrypt 5. SERP Count
 
@@ -419,25 +419,53 @@ function serpCount(){
 // Funkcja startowa
 
 function init() {
+	
     if (window.location.hostname == 'www.google.com') { 
-		getResults();
-		serpCount()
+		chrome.storage.sync.get('esrValue', function (esr) {
+		    if (esr.esrValue != false) {
+				getResults();
+		    }
+		});
+		
+		chrome.storage.sync.get('serpCountValue', function (serp) {
+		    if (serp.serpCountValue != false) {
+				serpCount();
+		    }
+		});
+		
 	};
 	
 	if (window.location.hostname == 'ads.google.com') {
-		window.onload = function(){
-		   setTimeout(function(){
-		       start();
-			   
-		   }, 2000);
-		};
+		
+		chrome.storage.sync.get('gcsValue', function (gcs) {
+		    if (gcs.gcsValue != false) {
+				window.onload = function(){
+				   setTimeout(function(){
+				       start();			   
+				   }, 2000);
+				};
+		    }
+		});
+
 	};
 	
-	if ( (window.location.hostname != 'oko.widoczni.com') && (window.location.hostname != 'www.google.com') && (window.location.hostname != 'app.asana.com') ) {
-		 seoTools();
-	     okoTools();
+	if ( (window.location.hostname != 'oko.widoczni.com') && (window.location.hostname != 'www.google.com') && (window.location.hostname != 'app.asana.com') && (window.location.hostname != 'ads.google.com') ) {
+		chrome.storage.sync.get('seoToolsValue', function (seoTools) {
+		    if (seoTools.seoToolsValue != false) {
+			    createAddonSeo();
+			    seoBox();
+		    }
+		});
+
+	 	chrome.storage.sync.get('okoToolsValue', function (okoTools) {
+	 	    if (okoTools.okoToolsValue != false) {
+			    createAddonOko();
+			    toolsBox();
+			    okoBox();
+	 	    }
+	 	});
+	     
 	};
-	
 
 }
 
