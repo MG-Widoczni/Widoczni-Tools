@@ -12,7 +12,11 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$url = isset($_REQUEST['domena'])?$_REQUEST['domena']:"";
+$domains = array();
+$domains = isset($_REQUEST['domena'])?$_REQUEST['domena']:"";
+echo $domains;
+
+/* 
 $sql = "SELECT domena FROM MyClients WHERE domena='$url'";
 $result = $conn->query($sql);
 
@@ -24,6 +28,7 @@ if ($result->num_rows > 0) {
 } else {
     echo "0 results";
 }
+*/
 
 $conn->close();
 
