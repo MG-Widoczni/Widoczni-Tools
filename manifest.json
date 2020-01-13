@@ -1,7 +1,7 @@
 {
   "name": "Widoczni Tools",
   "version": "1.0",
-  "description": "Zestaw skryptów ułatwiających codzienną pracę",
+  "description": "Display SEO Meta in one click & Bunch of SEO Tools",
   "permissions": ["activeTab", "declarativeContent", "storage"],
   "background": {
     "scripts": ["background.js"],

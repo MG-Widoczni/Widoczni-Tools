@@ -1,16 +1,17 @@
 /* Spis treści:
 
+- SEO Tools
 Skrypt 1. Enhanced Seach Results - podświetlenie domen klientów w wynikach wyszukiwania.
 Skrypt 2. Rozszerzenie GAKPT'a o funkcję kopiowania i sprawdzenia frazy w Google.
 Skrypt 3. OKO Tools
 Skrypt 4. SEO Tools
 Skrypt 5. SERP Count
-Funkcja startowa
+- Funkcja startowa
 
 */
 
-
 // Skrypt 1. Enhanced Seach Results - podświetlenie domen klientów w wynikach wyszukiwania.
+
 
 function getResults() {
 
@@ -208,28 +209,28 @@ function createAddonOko(){
 
 }
 
-function toolsBox(){
-    charsCounter();
-}
+// function toolsBox(){
+//     charsCounter();
+// }
 
-function charsCounter(){
-    var chars = document.createElement('div');
-    chars.setAttribute('id','chars');
-
-    $(document.body).on('mouseup', function(){
-    var text = document.getSelection().toString();
-    if (text){
-        var length = document.getSelection().toString().length;
-        if (length > 0) {
-            document.getElementById('toolsBox').appendChild(chars);
-            chars.innerHTML = '<p>Chars:<br><span>'+length+'</span></p>';
-        }
-    } else {
-          	chars.innerHTML = '';
-       	    document.getElementById('toolsBox').removeChild(chars);
-	  }
-});
-}
+// function charsCounter(){
+//     var chars = document.createElement('div');
+//     chars.setAttribute('id','chars');
+//
+//     $(document.body).on('mouseup', function(){
+//     var text = document.getSelection().toString();
+//     if (text){
+//         var length = document.getSelection().toString().length;
+//         if (length > 0) {
+//             document.getElementById('toolsBox').appendChild(chars);
+//             chars.innerHTML = '<p>Chars:<br><span>'+length+'</span></p>';
+//         }
+//     } else {
+//           	chars.innerHTML = '';
+//        	    document.getElementById('toolsBox').removeChild(chars);
+// 	  }
+// });
+// }
 
 function okoBox(){
 
@@ -415,7 +416,6 @@ function serpCount(){
       }
 }
 
-
 // Funkcja startowa
 
 function init() {
@@ -460,7 +460,7 @@ function init() {
 	 	chrome.storage.sync.get('okoToolsValue', function (okoTools) {
 	 	    if (okoTools.okoToolsValue != false) {
 			    createAddonOko();
-			    toolsBox();
+			    // toolsBox();
 			    okoBox();
 	 	    }
 	 	});

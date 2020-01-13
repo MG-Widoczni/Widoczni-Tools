@@ -2,27 +2,19 @@
 // Create connection to pass messages
 var esr_port = chrome.extension.connect({
       name: "ESR Port"
- });
- 
-// Create connection to pass messages
+});
 var gcs_port = chrome.extension.connect({
       name: "GCS Port"
- });
-
-// Create connection to pass messages
+});
 var oko_tools_port = chrome.extension.connect({
       name: "OKO Tools Port"
- });
-
-// Create connection to pass messages 
+});
 var seo_tools_port = chrome.extension.connect({
       name: "SEO Tools Port"
- });
-
-// Create connection to pass messages
+});
 var serp_count_port = chrome.extension.connect({
       name: "SERP Count Port"
- });
+});
  
 
 // Define variables for each script
@@ -119,4 +111,80 @@ document.querySelector('#oko-tools-box').addEventListener( 'change', oko_tools_s
 document.querySelector('#seo-tools-box').addEventListener( 'change', seo_tools_save_options);
 document.querySelector('#seo-count-script').addEventListener( 'change', serp_count_save_options);
 
+// SEO Meta - generate title and description
+var code = 'var meta = document.querySelector("meta[name=\'description\']");' + 
+           'if (meta) meta = meta.getAttribute("content");' +
+           '({' +
+           '    title: document.title,' +
+           '    description: meta || ""' +
+           '});';
+chrome.tabs.executeScript({code: code}, function(results) {
+    if (!results) {
+        return;
+    }
+    var result = results[0];
+	document.querySelector('.title').textContent = result.title;
+	document.querySelector('.description').textContent = result.description;
+});
+
+// SEO Meta - generate H1 header
+var code_h1 = 'var h1Headings = document.getElementsByTagName("h1");' + 
+ 	 	   	  'var h1Header = h1Headings[0].textContent;' +
+ 		   	  '({ h1: h1Header})';
+chrome.tabs.executeScript({code: code_h1}, function(results) {
+	var result = results[0];
+	if (!result) {
+		document.querySelector('.h1-tag').textContent = '-';
+	} else {
+	 	document.querySelector('.h1-tag').textContent = result.h1;
+	}
+});
+
+// SEO Meta - generate canonical link
+var getCanonical = 'var canonical = "";' + 
+                   'var links = document.getElementsByTagName("link");' +
+                   'for (var i = 0; i < links.length; i++) {' +
+                   'if (links[i].getAttribute("rel") === "canonical") {' +
+                   'canonical = links[i].getAttribute("href");' +
+                   '}' +
+                   ' }' + 
+ 	 			   '({ canonical: canonical })';
+chrome.tabs.executeScript({code: getCanonical}, function(results) {
+   	var result = results[0];
+ 	if (!result) {
+		document.querySelector('.canonical').textContent = '-';
+	} else {
+		document.querySelector('.canonical').textContent = result.canonical;
+   	}
+});
   
+// SEO Meta - generate meta robots
+var getRobots = 'var robots = document.getElementsByName("robots")[0].getAttribute("content");' + 
+ 				'({ robots: robots })';
+chrome.tabs.executeScript({code: getRobots}, function(results) {
+	var result = results[0];
+ 	if (!result) {
+	 	document.querySelector('.robots').textContent = '-';
+ 	} else {
+ 	 	document.querySelector('.robots').textContent = result.robots;
+ 	}
+});
+
+// SEO Meta - Go to robots.txt
+function robots() {
+	var goRobots = 'window.open(location.href + "robots.txt");'
+    chrome.tabs.executeScript({code: goRobots});
+}
+document.querySelector('#robots-button').addEventListener('click', robots);
+
+
+// SEO Meta - Go to sitemap.xml
+function sitemap() {
+	var goSitemap = 'window.open(location.href + "sitemap.xml");'
+    chrome.tabs.executeScript({code: goSitemap});
+}
+document.querySelector('#sitemap-button').addEventListener('click', sitemap);
+
+
+
+
